@@ -1,10 +1,10 @@
 # Ackermann Steering Vehicle Simulation
 
-## About
+## ✨ About
 
 This package, built with ROS 2 Jazzy Jalisco and Gazebo Harmonic, launches a simulation of an Ackermann steering vehicle. The vehicle model includes steering angle and velocity control, along with an embedded front camera that streams live images for vision-based tasks. This setup could be used for developing and testing autonomous driving algorithms in a simulated environment.
 
-## Requirements
+## 📚 Requirements
 
 To use this package, you'll need the following:
 
@@ -15,17 +15,20 @@ To use this package, you'll need the following:
 **Make sure to install the following ROS 2 Jazzy Jalisco packages:**
 
 ```bash
-sudo apt install -y                         \
-    ros-jazzy-ros2-controllers              \
-    ros-jazzy-ros-gz                        \
-    ros-jazzy-ros-gz-bridge                 \
-    ros-jazzy-joint-state-publisher         \
-    ros-jazzy-robot-state-publisher         \
-    ros-jazzy-xacro                         \
-    ros-jazzy-joy                           
+sudo apt install -y \
+     ros-jazzy-ros2-controllers \
+     ros-jazzy-gz-ros2-control \
+     ros-jazzy-ros-gz \
+     ros-jazzy-ros-gz-bridge \
+     ros-jazzy-joint-state-publisher \
+     ros-jazzy-robot-state-publisher \
+     ros-jazzy-xacro \
+     ros-jazzy-joy                           
 ```
 
-## Usage
+## 🛠️ Linux Setup
+
+This project is designed for Linux Ubuntu 24.04. It may work on other versions or distributions, but some adjustments could be necessary. To avoid changing your OS, you can use [Docker](#docker-usage) for an easier and more consistent setup across environments.
 
 ### Clone the Repository
 
@@ -44,6 +47,56 @@ source /opt/ros/jazzy/setup.bash
 cd <path_to_your_workspace>
 colcon build
 ```
+
+## 🛠️ Docker Setup
+
+**[Docker](https://www.docker.com/)** is required to build and run this project using the Docker setup. It ensures a consistent environment and simplifies dependency management across different systems. Make sure Docker is properly installed and running on your machine before proceeding with the build and execution steps.
+
+### Clone the Repository
+
+Clone this repository to a preferred location on your machine.
+
+```bash
+git clone git@github.com:lucasmazz/gazebo_ackermann_steering_vehicle.git
+```
+
+### Build the Container
+
+Navigate to the project directory and run the `build_docker.sh` script to build the Docker container. Make sure you're inside the folder, as the script depends on local files. The build may take a while, depending on your internet speed and system performance.
+
+```bash
+cd gazebo_ackermann_steering_vehicle
+./build_docker.sh
+```
+
+### Run the Container
+
+To run the Docker container, make sure you're in the project directory and execute the `run_docker.sh` script. This will open a command line with the environment fully configured. You can run this script as many times as needed, and each time it will launch a new command line session inside the Docker container, ready to execute commands within the configured environment.
+
+```bash
+cd gazebo_ackermann_steering_vehicle
+./run_docker.sh
+```
+
+For instance, if you need to run the simulation, simply execute the `run_docker.sh` script to open a command line inside the Docker container and execute the following command:
+
+```bash
+cd gazebo_ackermann_steering_vehicle
+./run_docker.sh
+ros2 launch gazebo_ackermann_steering_vehicle vehicle.launch.py
+```
+
+To use the joystick, open a new command line inside the Docker container by running the `run_docker.sh` script again in a new terminal. Once inside, execute the following command:
+
+```bash
+cd gazebo_ackermann_steering_vehicle
+./run_docker.sh
+ros2 launch gazebo_ackermann_steering_vehicle joystick.launch.py
+```
+
+For more advanced usage and details, please refer to the next section of the documentation.
+
+## 🚀 Usage
 
 ### Launch the Vehicle
 
@@ -105,7 +158,7 @@ source install/setup.bash
 ros2 launch gazebo_ackermann_steering_vehicle joystick.launch.py
 ```
 
-## Parameters
+## ⚙️ Parameters
 
 The parameters for the vehicle model, control, and camera can be configured in the ```gazebo_ackermann_steering_vehicle/config/parameters.yaml``` file. This file includes the following settings with their default values for the simulation:
 
