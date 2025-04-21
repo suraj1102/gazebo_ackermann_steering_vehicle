@@ -2,9 +2,11 @@
 
 ## ✨ About
 
-This package, built with ROS 2 Jazzy Jalisco and Gazebo Harmonic, launches a simulation of an Ackermann steering vehicle. The vehicle model includes steering angle and velocity control, along with an embedded front camera that streams live images for vision-based tasks. This setup could be used for developing and testing autonomous driving algorithms in a simulated environment.
+This package, built with ROS 2 Jazzy Jalisco and Gazebo Harmonic, launches a simulation of an Ackermann steering vehicle. The vehicle model includes steering angle and velocity control, along with an embedded front camera that streams live images for vision-based tasks. This setup could be used for developing and testing autonomous driving algorithms in a simulated environment. 
 
 ![vehicle simulation](https://github.com/user-attachments/assets/1726cb9f-d4c0-4b1a-90e4-4b3c395b9268)
+
+For the complete documentation on the development of this package, including setup, modeling, and simulation steps, please refer to the full guide here: [Ackermann Steering Vehicle Simulation](https://workabotic.com/2025/ackermann-steering-vehicle-simulation/)
 
 ## 📚 Requirements
 
