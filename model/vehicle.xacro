@@ -393,7 +393,7 @@
   <!-- Gazebo Control -->
   <ros2_control name="control" type="system">
     <hardware>
-      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
     </hardware>
           
     <joint name="front_left_steering_joint">
@@ -441,9 +441,9 @@
     </joint>
   </ros2_control>
 
-  <!-- Gazebo Plugins -->
   <gazebo>
-    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+    <!-- Joint State Publisher Plugin -->
+    <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
       <topic>joint_states</topic>
       <joint_name>front_left_steering_joint</joint_name>
       <joint_name>front_right_steering_joint</joint_name>
@@ -453,22 +453,17 @@
       <joint_name>rear_right_wheel_joint</joint_name>
     </plugin>
 
-    <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+    <!-- ROS 2 Control Plugin -->
+    <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
       <parameters>$(find gazebo_ackermann_steering_vehicle)/config/gz_ros2_control.yaml</parameters>
-    </plugin>
-
-    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
-      <render_engine>ogre2</render_engine>
     </plugin>
   </gazebo>
 
-  <!-- Camera -->
+  <!-- Camera Sensor Plugin -->
   <gazebo reference="camera_link">
     <sensor type="camera" name="vehicle_front_camera">
       <update_rate>${camera_fps}</update_rate>
       <visualize>true</visualize>
-      <topic>camera</topic>
-
       <camera name="head">
         <horizontal_fov>${camera_fov}</horizontal_fov>
         <image>
@@ -486,11 +481,13 @@
           <stddev>0.007</stddev>
         </noise>
       </camera>
+
       <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
-        <updateRate>0.0</updateRate>
+        <updateRate>${camera_fps}</updateRate>
         <cameraName>vehicle_front_camera</cameraName>
         <frameName>camera_link</frameName>
+        <robotNamespace>/</robotNamespace>
         <hackBaseline>0.07</hackBaseline>
         <distortionK1>0.0</distortionK1>
         <distortionK2>0.0</distortionK2>
@@ -500,5 +497,6 @@
       </plugin>
     </sensor>
   </gazebo>
+
 
 </robot>
