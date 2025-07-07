@@ -289,7 +289,7 @@
 
   <!-- Front Left Steering Joint -->
   <joint name="front_left_steering_joint" type="revolute">
-    <origin xyz="${wheel_offset} ${wheel_separation/2} -${wheel_radius/2}" rpy="0 0 0"/>
+    <origin xyz="${wheel_offset} ${wheel_separation/2} -${body_height/2.0}" rpy="0 0 0"/>
     <parent link="body_link"/>
     <child link="front_left_steering_link"/>
     <axis xyz="0 0 1"/>
@@ -309,7 +309,7 @@
 
   <!-- Front Right Steering Joint -->
   <joint name="front_right_steering_joint" type="revolute">
-    <origin xyz="${wheel_offset} ${-wheel_separation/2} -${wheel_radius/2}" rpy="0 0 0"/>
+    <origin xyz="${wheel_offset} ${-wheel_separation/2} -${body_height/2.0}" rpy="0 0 0"/>
     <parent link="body_link"/>
     <child link="front_right_steering_link"/>
     <axis xyz="0 0 1"/>
@@ -329,7 +329,7 @@
 
   <!-- Rear Left Wheel Joint -->
   <joint name="rear_left_wheel_joint" type="continuous">
-    <origin xyz="-${wheel_offset} ${wheel_separation/2} -${wheel_radius/2}" rpy="0 0 0"/>
+    <origin xyz="-${wheel_offset} ${wheel_separation/2} -${body_height/2.0}" rpy="0 0 0"/>
     <parent link="body_link"/>
     <child link="rear_left_wheel_link"/>
     <axis xyz="0 1 0"/>
@@ -339,7 +339,7 @@
 
   <!-- Rear Right Wheel Joint -->
   <joint name="rear_right_wheel_joint" type="continuous">
-    <origin xyz="-${wheel_offset} ${-wheel_separation/2} -${wheel_radius/2}" rpy="0 0 0"/>
+    <origin xyz="-${wheel_offset} ${-wheel_separation/2} -${body_height/2.0}" rpy="0 0 0"/>
     <parent link="body_link"/>
     <child link="rear_right_wheel_link"/>
     <axis xyz="0 1 0"/>

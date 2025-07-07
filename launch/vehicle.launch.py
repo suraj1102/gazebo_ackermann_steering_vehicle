@@ -56,7 +56,7 @@ def generate_launch_description():
         )
     x_arg = DeclareLaunchArgument('x', default_value='0.0')
     y_arg = DeclareLaunchArgument('y', default_value='0.0')
-    z_arg = DeclareLaunchArgument('z', default_value='0.1')
+    z_arg = DeclareLaunchArgument('z', default_value='0.3')
     roll_arg = DeclareLaunchArgument('R', default_value='0.0')
     pitch_arg = DeclareLaunchArgument('P', default_value='0.0')
     yaw_arg = DeclareLaunchArgument('Y', default_value='0.0')
