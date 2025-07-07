@@ -1,5 +1,8 @@
 # Ackermann Steering Vehicle Simulation
 
+This is a forked repository. 
+It was forked to port the simulation to ros2 humble with gazebo classic
+
 ## ✨ About
 
 This package, built with ROS 2 Jazzy Jalisco and Gazebo Harmonic, launches a simulation of an Ackermann steering vehicle. The vehicle model includes steering angle and velocity control, along with an embedded front camera that streams live images for vision-based tasks. This setup could be used for developing and testing autonomous driving algorithms in a simulated environment. 
