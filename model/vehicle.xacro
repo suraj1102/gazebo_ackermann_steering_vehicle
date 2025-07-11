@@ -63,8 +63,12 @@
 
   <!-- Links -->
 
-  <!-- Body Link -->
+  <!-- Base Link -->
   <link name="base_link">
+  </link>
+
+  <!-- Body Link -->
+  <link name="body_link">
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
@@ -286,11 +290,17 @@
   </link>
 
   <!-- Joints -->
+  <!-- Body to Base Joint -->
+  <joint name="body_to_base" type="fixed">
+      <origin xyz="0 0 ${body_height/2.0 + wheel_radius}" rpy="0 0 0"/>
+    <child link="body_link"/>
+    <parent link="base_link"/>
+  </joint>
 
   <!-- Front Left Steering Joint -->
   <joint name="front_left_steering_joint" type="revolute">
     <origin xyz="${wheel_offset} ${wheel_separation/2} -${body_height/2.0}" rpy="0 0 0"/>
-    <parent link="base_link"/>
+    <parent link="body_link"/>
     <child link="front_left_steering_link"/>
     <axis xyz="0 0 1"/>
     <limit effort="${max_steering_effort}" lower="${-max_steering_angle}" upper="${max_steering_angle}" velocity="${max_steering_angular_velocity}"/>
@@ -310,7 +320,7 @@
   <!-- Front Right Steering Joint -->
   <joint name="front_right_steering_joint" type="revolute">
     <origin xyz="${wheel_offset} ${-wheel_separation/2} -${body_height/2.0}" rpy="0 0 0"/>
-    <parent link="base_link"/>
+    <parent link="body_link"/>
     <child link="front_right_steering_link"/>
     <axis xyz="0 0 1"/>
     <limit effort="${max_steering_effort}" lower="${-max_steering_angle}" upper="${max_steering_angle}" velocity="${max_steering_angular_velocity}"/>
@@ -330,7 +340,7 @@
   <!-- Rear Left Wheel Joint -->
   <joint name="rear_left_wheel_joint" type="continuous">
     <origin xyz="-${wheel_offset} ${wheel_separation/2} -${body_height/2.0}" rpy="0 0 0"/>
-    <parent link="base_link"/>
+    <parent link="body_link"/>
     <child link="rear_left_wheel_link"/>
     <axis xyz="0 1 0"/>
     <limit effort="${max_effort}" velocity="${max_wheel_angular_velocity}"/>
@@ -340,7 +350,7 @@
   <!-- Rear Right Wheel Joint -->
   <joint name="rear_right_wheel_joint" type="continuous">
     <origin xyz="-${wheel_offset} ${-wheel_separation/2} -${body_height/2.0}" rpy="0 0 0"/>
-    <parent link="base_link"/>
+    <parent link="body_link"/>
     <child link="rear_right_wheel_link"/>
     <axis xyz="0 1 0"/>
     <limit effort="${max_effort}" velocity="${max_wheel_angular_velocity}"/>
@@ -351,7 +361,7 @@
   <joint name="camera_stick_joint" type="fixed">
     <axis xyz="0 1 0" />
     <origin xyz="${body_length/2 - camera_stick_size/2} ${camera_box_size/2 + camera_stick_size/2} ${camera_height/2}" rpy="0.0 0.0 0.0"/>
-    <parent link="base_link"/>
+    <parent link="body_link"/>
     <child link="camera_stick_link"/>
   </joint>
 
@@ -365,7 +375,7 @@
   </joint>
 
   <!-- Gazebo Parameters -->
-  <gazebo reference="base_link">
+  <gazebo reference="body_link">
     <mu1>0.0001</mu1>
     <mu2>0.0001</mu2>
   </gazebo>
